@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:3.1.23 AS builder
+FROM emscripten/emsdk:3.1.64 AS builder
 RUN apt-get update && apt-get install -y libglm-dev inotify-tools libssl-dev libz-dev
 RUN mkdir -p /project && chown emscripten:emscripten /project
 USER emscripten

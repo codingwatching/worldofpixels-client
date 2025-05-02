@@ -11,7 +11,7 @@ struct EmscriptenUiEvent;
 namespace gl {
 
 class WebGlContext : public GlContext {
-	std::int32_t ctxInfo;
+	std::uint32_t ctxInfo;
 	const char * targetCanvas;
 	const char * targetSizeElem;
 	mutable Size<int> sizeCache;
@@ -51,8 +51,8 @@ public:
 	void destroyRenderingContext();
 	void giveUp();
 
-	static int emEvent(int eventType, const void *, void * r);
-	static int onEvtResize(int, const EmscriptenUiEvent *, void * ctx);
+	static bool emEvent(int eventType, const void *, void * r);
+	static bool onEvtResize(int, const EmscriptenUiEvent *, void * ctx);
 
 private:
 	bool activateRenderingContextAs(bool webgl1);

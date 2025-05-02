@@ -377,9 +377,10 @@ public:
 	void lostFocus();
 
 private:
-	static int handleKeyEvent(int type, const EmscriptenKeyboardEvent * ev, void * data);
-	static int handleMouseEvent(int type, const EmscriptenMouseEvent * ev, void * data);
-	static int handleTouchEvent(int type, const EmscriptenTouchEvent * ev, void * data);
-	static int handleFocusEvent(int type, const EmscriptenFocusEvent * ev, void * data);
-	static int handleWheelEvent(int type, const EmscriptenWheelEvent * ev, void * data);
+	using EmHdlrRet = bool;
+	static EmHdlrRet handleKeyEvent(int type, const EmscriptenKeyboardEvent * ev, void * data);
+	static EmHdlrRet handleMouseEvent(int type, const EmscriptenMouseEvent * ev, void * data);
+	static EmHdlrRet handleTouchEvent(int type, const EmscriptenTouchEvent * ev, void * data);
+	static EmHdlrRet handleFocusEvent(int type, const EmscriptenFocusEvent * ev, void * data);
+	static EmHdlrRet handleWheelEvent(int type, const EmscriptenWheelEvent * ev, void * data);
 };

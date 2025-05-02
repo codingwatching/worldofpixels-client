@@ -275,7 +275,7 @@ void WebGlContext::stopRenderLoop() {
 	renderLoopSet = false;
 }
 
-int WebGlContext::emEvent(int eventType, const void *, void * r) {
+bool WebGlContext::emEvent(int eventType, const void *, void * r) {
 	WebGlContext& ctx = *static_cast<WebGlContext *>(r);
 
 	switch (eventType) {
@@ -295,7 +295,7 @@ int WebGlContext::emEvent(int eventType, const void *, void * r) {
 	return false;
 }
 
-EM_BOOL WebGlContext::onEvtResize(int, const EmscriptenUiEvent *, void * ctx) {
+bool WebGlContext::onEvtResize(int, const EmscriptenUiEvent *, void * ctx) {
 	WebGlContext& c = *static_cast<WebGlContext *>(ctx);
 	c.dipSizeCache.w = -1;
 	c.realSizeCache.w = -1;

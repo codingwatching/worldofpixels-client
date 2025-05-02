@@ -935,7 +935,7 @@ void InputManager::lostFocus() {
 	InputAdapter::releaseAll(*this);
 }
 
-int InputManager::handleKeyEvent(int type, const EmscriptenKeyboardEvent * ev, void * data) {
+InputManager::EmHdlrRet InputManager::handleKeyEvent(int type, const EmscriptenKeyboardEvent * ev, void * data) {
 	InputManager * im = static_cast<InputManager *>(data);
 
 	if (im->disabled) {
@@ -967,7 +967,7 @@ int InputManager::handleKeyEvent(int type, const EmscriptenKeyboardEvent * ev, v
 	return false;
 }
 
-int InputManager::handleMouseEvent(int type, const EmscriptenMouseEvent * ev, void * data) {
+InputManager::EmHdlrRet InputManager::handleMouseEvent(int type, const EmscriptenMouseEvent * ev, void * data) {
 	InputManager * im = static_cast<InputManager *>(data);
 
 	im->setTimestamp(ev->timestamp);
@@ -1020,7 +1020,7 @@ int InputManager::handleMouseEvent(int type, const EmscriptenMouseEvent * ev, vo
 	return false;
 }
 
-int InputManager::handleTouchEvent(int type, const EmscriptenTouchEvent * ev, void * data) {
+InputManager::EmHdlrRet InputManager::handleTouchEvent(int type, const EmscriptenTouchEvent * ev, void * data) {
 	InputManager * im = static_cast<InputManager *>(data);
 
 	im->setTimestamp(ev->timestamp);
@@ -1090,7 +1090,7 @@ int InputManager::handleTouchEvent(int type, const EmscriptenTouchEvent * ev, vo
 	return cancel;
 }
 
-int InputManager::handleFocusEvent(int type, const EmscriptenFocusEvent * e, void * data) {
+InputManager::EmHdlrRet InputManager::handleFocusEvent(int type, const EmscriptenFocusEvent * e, void * data) {
 	InputManager * im = static_cast<InputManager *>(data);
 
 	bool isWindow = std::strcmp("#window", e->nodeName) == 0;
@@ -1120,7 +1120,7 @@ int InputManager::handleFocusEvent(int type, const EmscriptenFocusEvent * e, voi
 	return false;
 }
 
-int InputManager::handleWheelEvent(int type, const EmscriptenWheelEvent * ev, void * data) {
+InputManager::EmHdlrRet InputManager::handleWheelEvent(int type, const EmscriptenWheelEvent * ev, void * data) {
 	InputManager * im = static_cast<InputManager *>(data);
 
 	im->setTimestamp(ev->mouse.timestamp);

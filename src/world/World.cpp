@@ -46,7 +46,7 @@ World::World(Client& cl, InputAdapter& base, std::string name, std::unique_ptr<S
 	});
 
 	u32 cssBgClr = bswap_32(bgClr.rgb);
-	eui_root_css_property_set("--bg-clr", svprintf("#%08X", cssBgClr));
+	eui_root_css_property_set_sv("--bg-clr", svprintf("#%08X", cssBgClr));
 
 	iMoveCursor.setDefaultKeybind(Keybind::ANY_PTR_BTN);
 	iMoveCursor.setCb([this] (ImAction::Event& ev, const InputInfo& ii) {

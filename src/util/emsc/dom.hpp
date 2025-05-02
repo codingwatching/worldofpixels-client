@@ -50,4 +50,4 @@ extern "C" { // C++ -> JS
 }
 
 const char * eui_elem_selector(std::uint32_t id);
-void eui_root_css_property_set(std::string_view prop, std::string_view val);
+void eui_root_css_property_set_sv(std::string_view prop, std::string_view val);

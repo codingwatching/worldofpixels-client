@@ -44,11 +44,11 @@ void ColorWidget::update() {
 	u32 cssSecClr = bswap_32(sClr.rgb);
 
 	if (primaryClr.setColor(pClr)) {
-		eui_root_css_property_set("--clr-pri", svprintf("#%08X", cssPriClr));
+		eui_root_css_property_set_sv("--clr-pri", svprintf("#%08X", cssPriClr));
 	}
 
 	if (secondaryClr.setColor(sClr)) {
-		eui_root_css_property_set("--clr-sec", svprintf("#%08X", cssSecClr));
+		eui_root_css_property_set_sv("--clr-sec", svprintf("#%08X", cssSecClr));
 	}
 }
 
@@ -59,7 +59,7 @@ void ColorWidget::setPaletteTglFn(std::function<void(void)> cb) {
 void ColorWidget::updatePrimaryClr() {
 	RGB_u color = primaryClr.getColor();
 	if (clr.setPrimaryColor(color)) {
-		eui_root_css_property_set("--clr-pri", svprintf("#%08X", bswap_32(color.rgb)));
+		eui_root_css_property_set_sv("--clr-pri", svprintf("#%08X", bswap_32(color.rgb)));
 		tm.emitLocalStateChanged<ColorProvider>();
 	}
 }
@@ -67,7 +67,7 @@ void ColorWidget::updatePrimaryClr() {
 void ColorWidget::updateSecondaryClr() {
 	RGB_u color = secondaryClr.getColor();
 	if (clr.setSecondaryColor(color)) {
-		eui_root_css_property_set("--clr-sec", svprintf("#%08X", bswap_32(color.rgb)));
+		eui_root_css_property_set_sv("--clr-sec", svprintf("#%08X", bswap_32(color.rgb)));
 		tm.emitLocalStateChanged<ColorProvider>();
 	}
 }

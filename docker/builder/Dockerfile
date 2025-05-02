@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:3.1.23
+FROM emscripten/emsdk:3.1.64
 RUN apt-get update && apt-get install -y libglm-dev inotify-tools libssl-dev libz-dev
 RUN mkdir -p /wsockifier && chown emscripten:emscripten /wsockifier
 USER emscripten
