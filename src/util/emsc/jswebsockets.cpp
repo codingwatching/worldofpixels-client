@@ -39,7 +39,7 @@ EM_JS(bool, js_ws_open, (const char * url, std::size_t len, const char * proto, 
 	}
 
 	Module.JSWS.ws.binaryType = "arraybuffer";
-	Module.JSWS.ws.onopen = Module["_js_ws_call_on_open"];
+	Module.JSWS.ws.onopen = function(e) { Module["_js_ws_call_on_open"](); };
 	Module.JSWS.ws.onclose = function(e) { Module["_js_ws_call_on_close"](e.code); };
 	Module.JSWS.ws.onmessage = function(e) {
 		var data = e.data;
