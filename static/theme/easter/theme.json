@@ -1,0 +1,36 @@
+{
+	"theme_name": "Easter",
+	"theme_desc": "Happy Easter!",
+	"icon_size_px": 32,
+	"ui": [[
+		"settings",
+		"clr-swap",
+		"palette",
+		"dcord",
+		"fbook",
+		"rddit",
+		"pypal",
+		"gpedia",
+		"help",
+		"cursor"
+	]],
+	"tools": {
+		"shadow_opts": {
+			"enable": true,
+			"allow_growing_tex": false,
+			"color": "#0000007F",
+			"blur": 2,
+			"offset_x": 1,
+			"offset_y": 1
+		},
+		"definitions": [
+			{"name": "pencil", "hotspot": [4, 29]},
+			{"name": "move", "hotspot": [16, 19]},
+			{"name": "zoom", "hotspot": [14, 14]},
+			{"name": "pipette", "hotspot": [4, 29]},
+			{"name": "fill", "hotspot": [9, 27]},
+			{"name": "export", "hotspot": [16, 16], "first_as_ui_only": true},
+			{"name": "ruler", "hotspot": [16, 16], "first_as_ui_only": true}
+		]
+	}
+}
