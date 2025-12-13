@@ -15,14 +15,15 @@ with nixpkgs; let
 		url = emLibpngUrl;
 		hash = "sha256-r0+38mD4OZGeWVjlqwGiddT+Q21FRCo27mL3Plvrdbo=";
 	};
+	projectSrc = fetchGit {
+		url = ./.;
+	};
 in buildEmscriptenPackage {
 	name = "owop-client";
 
 	enableParallelBuilding = true;
 
-	src = fetchGit {
-		url = ./.;
-	};
+	src = projectSrc;
 
 	buildInputs = [
 		glm
@@ -41,7 +42,7 @@ exec "${emscripten}/share/emscripten/emdwp"  "$@"
 	preConfigure = ''
 		echo "#!/bin/sh" > ./configure
 		chmod +x ./configure
-		echo -e 'VERSION=25.05\nDISABLE_AUTO_REFRESH=1\nMAKEFLAGS+=-j'"$(nproc)" \
+		echo -e 'VERSION=${builtins.toString projectSrc.lastModified}\nDISABLE_AUTO_REFRESH=1\nMAKEFLAGS+=-j'"$(nproc)" \
 			| cat - Makefile > temp && mv temp Makefile
 	'';
 
