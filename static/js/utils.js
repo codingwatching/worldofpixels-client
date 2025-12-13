@@ -78,6 +78,8 @@ function handleSwMsg(e) {
 }
 
 function showUpdateAvailableAlert(ver) {
+	console.log("[Utils.js] New OWOP client version is ready. Version:", ver);
+	alert("A new OWOP client version is ready. Refresh the page to switch to it! (" + ver + ")");
 #ifdef DEBUG
 #ifndef DISABLE_AUTO_REFRESH
 	location.reload(true);

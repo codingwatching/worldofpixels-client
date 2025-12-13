@@ -42,7 +42,7 @@ exec "${emscripten}/share/emscripten/emdwp"  "$@"
 	preConfigure = ''
 		echo "#!/bin/sh" > ./configure
 		chmod +x ./configure
-		echo -e 'VERSION=${builtins.toString projectSrc.lastModified}\nDISABLE_AUTO_REFRESH=1\nMAKEFLAGS+=-j'"$(nproc)" \
+		echo -e 'VERSION=${projectSrc.dirtyShortRev or projectSrc.shortRev}\nDISABLE_AUTO_REFRESH=1\nMAKEFLAGS+=-j'"$(nproc)" \
 			| cat - Makefile > temp && mv temp Makefile
 	'';
 

@@ -42,14 +42,19 @@ self.addEventListener("activate", function(e) {
 		console.log("[SW] Activating new service worker");
 		await self.clients.claim();
 
-		await sendMsg({t: "updateAvailable", v: cacheVersion});
-
+		var deletedSomething = false;
 		var keyList = await caches.keys();
 		await Promise.all(keyList.map(function(key) {
 			if (key !== cacheVersion) {
+				deletedSomething = true;
 				return caches.delete(key);
 			}
 		}));
+
+		// if nothing was deleted we don't have an outdated client atm anyways, so don't alert
+		if (deletedSomething) {
+			await sendMsg({t: "updateAvailable", v: cacheVersion});
+		}
 	})());
 });
 

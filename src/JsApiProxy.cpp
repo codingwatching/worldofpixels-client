@@ -33,24 +33,24 @@ EM_JS(void, create_api_structure, (void), {
 	window["OWOP"] = Module.api = {
 		"events": {},
 		"world": {
-			"getName": sf("owop_api_get_world_name"),
-			"getPixel": uf("owop_api_get_pixel"),
-			"setPixel": f("owop_api_set_pixel"),
+			"getName": (function() { return this(); }).bind(sf("owop_api_get_world_name")),
+			"getPixel": (function(x, y) { return this(x, y); }).bind(uf("owop_api_get_pixel")),
+			"setPixel": (function(x, y, colorUint32) { return this(x, y, colorUint32); }).bind(f("owop_api_set_pixel")),
 			get ["name"]() { return this["getName"](); }
 		},
 		"client": {
-			"reconnect": f("owop_api_reconnect"),
+			"reconnect": (function() { return this(); }).bind(f("owop_api_reconnect")),
 			get ["ws"]() { return Module.JSWS.ws; }
 		},
 		"chat": {},
 		"player": {},
 		"camera": {
-			"getX": f("owop_api_get_cam_x"),
-			"getY": f("owop_api_get_cam_y"),
-			"setPos": f("owop_api_set_cam_pos"),
-			"getZoom": f("owop_api_get_cam_zoom"),
-			"setZoom": f("owop_api_set_cam_zoom"),
-			"setMomentum": f("owop_api_set_cam_momentum"),
+			"getX": (function() { return this(); }).bind(f("owop_api_get_cam_x")),
+			"getY": (function() { return this(); }).bind(f("owop_api_get_cam_y")),
+			"setPos": (function(x, y) { return this(x, y); }).bind(f("owop_api_set_cam_pos")),
+			"getZoom": (function() { return this(); }).bind(f("owop_api_get_cam_zoom")),
+			"setZoom": (function(zoom) { return this(zoom); }).bind(f("owop_api_set_cam_zoom")),
+			"setMomentum": (function(dX, dY) { return this(dX, dY); }).bind(f("owop_api_set_cam_momentum")),
 			get ["x"]() { return this["getX"](); },
 			set ["x"](x) { this["setPos"](x, this["y"]); return x; },
 			get ["y"]() { return this["getY"](); },
